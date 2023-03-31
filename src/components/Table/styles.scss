@@ -1,0 +1,35 @@
+.c-table {
+    width: 60%;
+    text-align: left;
+    border-radius: 1px;
+    font-size: 13px;
+    border: 1px solid #8f81bb;
+    border-collapse: collapse;
+}
+
+.c-thead {
+    background-color: #8f81bb;
+    height: 35px;
+}
+
+.c-thead__th__button {
+    background-color: #8f81bb !important;
+    border: none;
+    cursor: pointer;
+}
+
+.c-tbody {
+    border-collapse: collapse;
+}
+
+.c-tbody__tr {
+    border: 1px solid #8f81bb;
+    height: 35px;
+    font-weight: 500;
+}
+
+.c-button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
