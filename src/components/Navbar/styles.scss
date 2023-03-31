@@ -1,0 +1,21 @@
+.c-wrapper {
+    width: 62%;
+    height: 50px;
+    background-color: #E596A3;
+    border-bottom: 2px solid gray;
+    margin-bottom: 20px;
+    align-items: center;
+    display: flex;
+}
+
+.c-wrapper__span {
+    font-size: 24px;
+}
+
+.c-wrapper__button {
+    background-color: transparent;
+    border: none;
+    margin-left: 2rem;
+    cursor: pointer;
+    margin-top: 5px;
+}
