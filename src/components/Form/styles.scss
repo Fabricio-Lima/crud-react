@@ -1,0 +1,68 @@
+.c-form {
+    width: 100%;
+}
+
+.c-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cfcccc;
+    padding: 35px;
+    width: 57%;
+    border-radius: 15px;
+}
+
+.c-form__field {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+
+    & input {
+        margin-top: 5px;
+        border: 1px solid #cfcccc;
+        padding: 5px;
+    }
+}
+
+.c-form__row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    & #TECL_NOME {
+        width: 50%;
+    }
+
+    & #TECL_ENDERECO {
+        width: 50%;
+    }
+
+    & #TECL_CIDADE {
+        width: 50%;
+    }
+
+    & #TECL_UF {
+        width: 5%;
+    }
+
+    & #TECL_TELEFONE {
+        width: 50%;
+    }
+}
+
+.c-form__container-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 15px;
+}
+
+.c-form__button {
+    background: #8f81bb;
+    color: #fff;
+    border: 0;
+    font-weight: bold;
+    height: 40px;
+    width: 135px;
+    cursor: pointer;
+}
+
