@@ -1,5 +1,5 @@
-import { Link, redirect } from "react-router-dom"
-import { Cliente, post } from "../../services/clienteService"
+import { Link } from "react-router-dom"
+import { Cliente, post, put } from "../../services/clienteService"
 import "./styles.scss"
 import { useEffect, useState } from "react"
 
@@ -8,6 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Form: React.FC<Props> = ({ updateData }) => {
+    const [id, setId] = useState<number>()
     const [nome, setNome] = useState('')
     const [endereco, setEndereco] = useState('')
     const [cidade, setCidade] = useState('')
@@ -17,6 +18,7 @@ const Form: React.FC<Props> = ({ updateData }) => {
     const data = Object(updateData)[0]
 
     useEffect(() => {
+        setId(data?.TECL_ID)
         setNome(data?.TECL_NOME)
         setCidade(data?.TECL_CIDADE)
         setEndereco(data?.TECL_ENDERECO)
@@ -26,6 +28,7 @@ const Form: React.FC<Props> = ({ updateData }) => {
 
     const saveData = () => {
         const obj: Cliente = {
+            TECL_ID: id,
             TECL_NOME: nome,
             TECL_ENDERECO: endereco,
             TECL_TELEFONE: telefone,
@@ -33,7 +36,14 @@ const Form: React.FC<Props> = ({ updateData }) => {
             TECL_UF: uf,
         }
 
-        post(obj).then((response) => {
+        if(id) {
+            return put(obj).then((response) => {
+                const { data } = response
+                alert(data.message)
+            })
+        }
+
+        return post(obj).then((response) => {
             const { data } = response
             alert(data.message)
         })
