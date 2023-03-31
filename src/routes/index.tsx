@@ -1,17 +1,22 @@
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
+    Navigate,
 } from 'react-router-dom';
-import List from '../pages/list';
-import Register from '../pages/register';
+
+import List from '../pages/list-cliente';
+import Register from '../pages/register-cliente';
+import EditarCliente from '../pages/edit-cliente';
 
 export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/list" element={<List />}/>
-                <Route path="/Register" element={<Register />}/>
+                <Route path="/" element={<Navigate replace to="/list" />} />
+                <Route path="/list" element={<List />} />
+                <Route path="/Register" element={<Register />} />
+                <Route path="/edit/:id" element={<EditarCliente />} />
             </Routes>
         </BrowserRouter>
     )
