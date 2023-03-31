@@ -5,12 +5,16 @@ import deleteIcon from '../../assets/icons/minus.png';
 import addIcon from '../../assets/icons/plus.png';
 import { Cliente, remove } from "../../services/clienteService";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     values: Cliente[]
 }
 
 const Table: React.FC<Props> = ({ values }) => {
+    useEffect(() => {
+        setData(values)
+    }, [values])
 
     const handleDelete = (id: number) => {
         if (window.confirm("Deletar cliente de Id." + id)){
@@ -19,6 +23,35 @@ const Table: React.FC<Props> = ({ values }) => {
                 alert(data.message)
             })
         }
+    }
+
+    const [data, setData] = useState<Cliente[]>([])
+
+    const searchTable = (value: any) => {
+        var filteredData = []
+
+        if (value.length === 0) {
+            return values; 
+        }
+
+        for(var i = 0; i < data.length; i++){
+            const valueLowCase = value.toLowerCase()
+           
+            var nomeCliente = data[i].TECL_NOME.toLowerCase() 
+
+            if(nomeCliente.includes(valueLowCase))
+                filteredData.push(data[i])
+        }
+
+        console.log(filteredData)
+
+        return filteredData
+    }
+
+    function handleInput(e: any) {
+        const inputValue = e.target.value;
+
+        setData(searchTable(inputValue));
     }
 
     return (
@@ -34,7 +67,13 @@ const Table: React.FC<Props> = ({ values }) => {
                             </button>
                         </Link>
                     </th>
-                    <th className="c-thead__th"></th>
+                    <th className="c-thead__th">
+                        <input
+                            placeholder="Procurar nome cliente"
+                            className="c-search-input"
+                            onChange={handleInput}
+                        />
+                    </th>
                     <th className="c-thead__th">
                         Nome
                     </th>
@@ -54,8 +93,8 @@ const Table: React.FC<Props> = ({ values }) => {
             </thead>
 
             <tbody className="c-tbody">
-                {values.length > 0 ? (
-                    values.map((value) => (
+                {data.length > 0 ? (
+                    data.map((value) => (
                     <tr className="c-tbody__tr" key={value.TECL_ID}>
                         <td>
                             <Link to={'/list'}>
